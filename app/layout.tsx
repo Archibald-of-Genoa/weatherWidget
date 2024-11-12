@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${montserrat.variable} ${inter.variable} ${roboto.variable} bg-body-gradient bg-no-repeat min-h-screen antialiased`}>{children}</body>
+      <body className={`${poppins.variable} ${montserrat.variable} ${inter.variable} ${roboto.variable} bg-body-gradient bg-no-repeat min-h-screen container antialiased`}>{children}</body>
     </html>
   );
 }
