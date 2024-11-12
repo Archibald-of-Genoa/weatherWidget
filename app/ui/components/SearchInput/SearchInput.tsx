@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
+import { Icon } from "../Icon/Icon";
 
 type SearchInput = {};
 
@@ -25,11 +26,7 @@ export default function SearchInput() {
           {inputText && (
             <div className="flex items-center">
               <div className="mx-3 h-8 w-px bg-dark-grey"></div>
-              <button
-                className="size-8" 
-              >
-                
-              </button>
+              <Icon name="FiveDayForecastImage" />
             </div>
           )}
         </div>
