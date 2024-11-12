@@ -2,7 +2,7 @@ import * as assets from "./assets";
 
 import { Props } from "./types";
 
-export function Icon({ name, className = "size-4" }: Props) {
+export function Icon({ name, className = "size-12" }: Props) {
   const IconComponent = assets[name] || null;
 
   if (!IconComponent) {

@@ -24,9 +24,9 @@ export default function SearchInput() {
           ></input>
 
           {inputText && (
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <div className="mx-3 h-8 w-px bg-dark-grey"></div>
-                <Icon name="OneDayForecast" />
+                <Icon name="FiveDayForecast"/>
             </div>
           )}
         </div>
