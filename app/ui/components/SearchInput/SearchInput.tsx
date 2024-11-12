@@ -26,7 +26,7 @@ export default function SearchInput() {
           {inputText && (
             <div className="flex items-center">
               <div className="mx-3 h-8 w-px bg-dark-grey"></div>
-              <Icon name="FiveDayForecastImage" />
+                <Icon name="OneDayForecast" />
             </div>
           )}
         </div>

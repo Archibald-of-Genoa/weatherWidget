@@ -2,7 +2,7 @@ import * as assets from "./assets";
 
 import { Props } from "./types";
 
-export function Icon({ height = 20, name, width = 20 }: Props) {
+export function Icon({ name, className = "size-4" }: Props) {
   const IconComponent = assets[name] || null;
 
   if (!IconComponent) {
@@ -13,5 +13,9 @@ export function Icon({ height = 20, name, width = 20 }: Props) {
     );
   }
 
-  return <IconComponent />; 
+  return (
+    <div className={className}>
+      <IconComponent />
+    </div>
+  );
 }

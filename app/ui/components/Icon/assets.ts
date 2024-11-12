@@ -1,2 +1,2 @@
-export * from './assets/FiveDayForecastImage';
-export * from './assets/TodaysForecastImage';
+export * from "./assets/OneDayForecast";
+export * from "./assets/FiveDayForecast";
