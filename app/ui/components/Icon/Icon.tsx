@@ -2,7 +2,7 @@ import * as assets from "./assets";
 
 import { Props } from "./types";
 
-export function Icon({ name, className = "size-12 cursor-pointer focus:outline-none", tabIndex = 0, onKeyDown, onClick }: Props) {
+export function Icon({ name, className = "size-10 focus:outline-none", tabIndex = 0, onKeyDown, onClick }: Props) {
   const IconComponent = assets[name] || null;
 
   if (!IconComponent) {
