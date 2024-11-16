@@ -2,7 +2,7 @@ import * as assets from "./assets";
 
 import { Props } from "./types";
 
-export function Icon({ name, className = "size-12" }: Props) {
+export function Icon({ name, className = "size-12", tabindex = 0, onKeyDown }: Props) {
   const IconComponent = assets[name] || null;
 
   if (!IconComponent) {
@@ -14,8 +14,8 @@ export function Icon({ name, className = "size-12" }: Props) {
   }
 
   return (
-    <div className={className}>
-      <IconComponent />
+    <div className={className} tabIndex={tabindex}>
+      <IconComponent  />
     </div>
   );
 }
