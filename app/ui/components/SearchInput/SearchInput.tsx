@@ -7,11 +7,12 @@ type SearchInput = {};
 export default function SearchInput() {
   const [searchText, setSearchText] = useState<string>("");
   const [debouncedSearchText, setDebouncedSearchText] = useState<string>("");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchText(searchText);
-    }, 200);
+    }, 300);
 
     return () => {
       clearTimeout(handler);
@@ -21,6 +22,9 @@ export default function SearchInput() {
   useEffect(() => {
     if (debouncedSearchText) {
       console.log(`City name: ${debouncedSearchText}`);
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
   }, [debouncedSearchText]);
 
@@ -40,7 +44,7 @@ export default function SearchInput() {
   return (
     <div className="mx-auto rounded-lg bg-vanilla">
       <div className="flex items-center p-5">
-        <div className="flex grow items-center bg-white px-4">
+        <div className="flex grow items-center bg-white px-4 rounded-lg">
           <input
             type="text"
             value={searchText}
@@ -53,18 +57,26 @@ export default function SearchInput() {
 
           <div className="flex items-center gap-x-3">
             <div className="ml-4 h-8 w-px bg-dark-grey"></div>
-            <Icon
-              name="Location"
-              onKeyDown={handleKeyOrClick}
-              onClick={handleKeyOrClick}
-            />
-            {debouncedSearchText && <Icon name="Umbrella" />}
+            <button>
+              <Icon
+                name="Location"
+                onKeyDown={handleKeyOrClick}
+                onClick={handleKeyOrClick}
+              />
+            </button>
+            {debouncedSearchText && (
+              <button>
+                <Icon name="Umbrella" />
+              </button>
+            )}
           </div>
         </div>
       </div>
       <div className="flex items-center justify-end">
         {debouncedSearchText && (
-          <div className="m-5 mt-0 flex items-center gap-x-4 px-4">
+          <div
+            className={`m-5 mt-0 flex items-center gap-x-4 px-4 transition-opacity duration-500 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"}`}
+          >
             <p className="min-h-12 w-[250px] rounded-lg bg-white p-2 text-center">
               Click to choose between a <br />
               5-day forecast or today’s <br />
