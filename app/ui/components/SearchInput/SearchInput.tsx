@@ -7,7 +7,8 @@ type SearchInput = {};
 export default function SearchInput() {
   const [searchText, setSearchText] = useState<string>("");
   const [debouncedSearchText, setDebouncedSearchText] = useState<string>("");
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [forecastClicked, setForecastClicked] = useState<boolean>(false);
+  const [selectedForecast, setSelectedForecast] = useState<string | null>(null);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -22,9 +23,6 @@ export default function SearchInput() {
   useEffect(() => {
     if (debouncedSearchText) {
       console.log(`City name: ${debouncedSearchText}`);
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
     }
   }, [debouncedSearchText]);
 
@@ -41,10 +39,15 @@ export default function SearchInput() {
     }
   };
 
+  const handleForecastClick = (forecastType: string) => {
+    setForecastClicked(true);
+    setSelectedForecast(forecastType);
+  };
+
   return (
     <div className="mx-auto rounded-lg bg-vanilla">
       <div className="flex items-center p-5">
-        <div className="flex grow items-center bg-white px-4 rounded-lg">
+        <div className="flex grow items-center rounded-lg bg-white px-4">
           <input
             type="text"
             value={searchText}
@@ -64,7 +67,7 @@ export default function SearchInput() {
                 onClick={handleKeyOrClick}
               />
             </button>
-            {debouncedSearchText && (
+            {debouncedSearchText && forecastClicked && (
               <button>
                 <Icon name="Umbrella" />
               </button>
@@ -75,17 +78,25 @@ export default function SearchInput() {
       <div className="flex items-center justify-end">
         {debouncedSearchText && (
           <div
-            className={`m-5 mt-0 flex items-center gap-x-4 px-4 transition-opacity duration-500 ease-in-out ${isVisible ? "opacity-100" : "opacity-0"}`}
+            className={`m-5 mt-0 flex items-center gap-x-4 px-4 transition-opacity duration-500 ease-in-out ${debouncedSearchText ? "opacity-100" : "opacity-0"}`}
           >
-            <p className="min-h-12 w-[250px] rounded-lg bg-white p-2 text-center">
-              Click to choose between a <br />
-              5-day forecast or today’s <br />
-              forecast
-            </p>
-            <button>
+            {!forecastClicked && (debouncedSearchText || searchText === "") && (
+              <p className="min-h-12 w-[250px] rounded-lg bg-white p-2 text-center">
+                Click to choose between a <br />
+                5-day forecast or today’s <br />
+                forecast
+              </p>
+            )}
+            <button
+              onClick={() => handleForecastClick("OneDay")}
+              className={`${selectedForecast === "FiveDay" ? "opacity-50" : "opacity-100"}`}
+            >
               <Icon name="OneDayForecast" />
             </button>
-            <button disabled={true} className="disabled:opacity-50">
+            <button
+              onClick={() => handleForecastClick("FiveDay")}
+              className={`${selectedForecast === "OneDay" ? "opacity-50" : "opacity-100"}`}
+            >
               <Icon name="FiveDayForecast" />
             </button>
           </div>
