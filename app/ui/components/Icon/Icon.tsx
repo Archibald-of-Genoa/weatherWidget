@@ -2,7 +2,7 @@ import * as assets from "./assets";
 
 import { Props } from "./types";
 
-export function Icon({ name, className = "size-10 focus:outline-none", tabIndex = 0, onKeyDown, onClick }: Props) {
+export function Icon({ name, className = "size-10 focus:outline-none", tabIndex = 0, onClick }: Props) {
   const IconComponent = assets[name] || null;
 
   if (!IconComponent) {
@@ -14,7 +14,7 @@ export function Icon({ name, className = "size-10 focus:outline-none", tabIndex 
   }
 
   return (
-    <div className={className} tabIndex={tabIndex} onKeyDown={onKeyDown} onClick={onClick}>
+    <div className={className} tabIndex={tabIndex} onClick={onClick}>
       <IconComponent  />
     </div>
   );

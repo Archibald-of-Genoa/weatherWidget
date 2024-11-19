@@ -1,6 +1,7 @@
 "use client";
 import { ChangeEvent, useState, useEffect } from "react";
 import { Icon } from "../Icon/Icon";
+import getPosition from "@/app/features/getPosition";
 
 type SearchInput = {};
 
@@ -64,7 +65,16 @@ export default function SearchInput() {
               <Icon
                 name="Location"
                 onKeyDown={handleKeyOrClick}
-                onClick={handleKeyOrClick}
+                onClick={async () => {
+                  try {
+                    const position = await getPosition();
+                    console.log(
+                      `Latitude: ${position.latitude}, Longitude: ${position.longitude}`,
+                    );
+                  } catch (error) {
+                    console.error("Error getting location:", error);
+                  }
+                }}
               />
             </button>
             {debouncedSearchText && forecastClicked && (
