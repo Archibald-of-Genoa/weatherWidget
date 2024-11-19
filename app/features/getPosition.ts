@@ -1,9 +1,10 @@
-export default async function getPosition(): Promise<{
+export type Position = {
   latitude: number;
   longitude: number;
-}> {
+}
+export default async function getPosition(): Promise<Position> {
   if ("geolocation" in navigator) {
-    return new Promise((resolve, reject) => {
+    return new Promise<Position>((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           if (!coords) {
